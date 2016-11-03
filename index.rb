@@ -13,7 +13,18 @@ require 'gosu'
 
 #Begin External File Requires
 require_relative "lib/globalVars.rb"
+require_relative "lib/debugIO.rb"
 
+
+def preInit
+    #Pre-Startup things go here. THIS RUNS BEFORE ANY SCREEN DRAWING OR ANYTHING!!!
+
+    # Start in Verbose Debug mode
+    # Change to false for no verbose but still debug
+    # Comment out for no console output.
+    DEBUG.new(true)
+    DEBUG.cout("Debugging has been loaded, initial cout here.", 0, false)
+end
 
 
 class GameWindow < Gosu::Window
@@ -22,10 +33,10 @@ class GameWindow < Gosu::Window
     super 1191, 670
 
     #Window Title
-    self.caption = "MMOnline 2  v." + PRODUCTVERSION
+    self.caption = "MMOnline 2  v." + CONST_PRODUCTVERSION
 
     #TEMPORARY
-    @loading_img = STARTUP_BG
+    @loading_img = CONST_STARTUP_BG
     #TEMPORARY
   end
 
@@ -42,8 +53,10 @@ end
 
 
 #Main class is to provide a gateway for console I/O
+#Generally should not be edited
 def Main
-    puts "HELLO DMM!"
+    preInit()
+    return nil
 end
 
 Main()
