@@ -4,12 +4,12 @@
 #Including all
 
 #requiring rubygems throws an error no clue why?
-#require 'rubygems'
+#same with ashton, see gemfile
+require 'rubygems'
 require 'gosu'
-require 'releasy'
-require 'texplay'
-require 'ashton'
-require 'gamebox'
+#require 'texplay'
+#require 'ashton'
+#require 'gamebox'
 
 
 #Main function because I like things to be neat.
