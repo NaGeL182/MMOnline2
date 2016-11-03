@@ -1,15 +1,13 @@
 # Well here we go
 
-
-#Including all
+# => Things here should generally
 
 #requiring rubygems throws an error no clue why?
-#same with ashton, see gemfile
+#same with ashton and gamebox, see gemfile
 require 'rubygems'
 require 'gosu'
 #require 'texplay'
 #require 'ashton'
-#require 'gamebox'
 
 #Begin External File Requires
 require_relative "lib/globalVars.rb"
@@ -43,6 +41,7 @@ class GameWindow < Gosu::Window
 
     #TEMPORARY
     @loading_img = CONST_STARTUP_BG
+    @titleFont = Gosu::Font.new(80)
     #TEMPORARY
   end
 
