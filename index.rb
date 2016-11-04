@@ -59,7 +59,7 @@ class GameWindow < Gosu::Window
         # => Creates a brand new instance variable with naming convention shown above.
         # => Initializes it in gosu.
         instance_variable_set("@#{assetName}", Gosu::Image.new(CONST_LOADINGFILES[imgNum], :tileable => true))
-        DEBUG.cout("Initialized image file '#{CONST_LOADINGFILES[imgNum]}' with assetName '@#{assetName}'", 0, false)
+        DEBUG.cout("Initialized image file '#{CONST_LOADINGFILES[imgNum]}' with assetName '#{assetName}'", 0, false)
         imgNum += 1
     end
   end
@@ -71,8 +71,8 @@ class GameWindow < Gosu::Window
 
   def draw
       #Will redraw the entire screen. For menu changes and such
-      @assets_bg_startupBG1_jpg.draw(0,0,0, factor_x=1.2, factor_y=1.2)
-      DEBUG.cout("Drew image #{@assets_bg_startupBG1_jpg} : @assets_bg_startupBG1_jpg.", 0, true)
+      @assets_bg_startupBG1_jpg.draw(0,0,0, factor_x=1.25, factor_y=1.25)
+      DEBUG.cout("Drew image #{@assets_bg_startupBG1_jpg} : assets_bg_startupBG1_jpg.", 0, true)
   end
 end
 
