@@ -8,6 +8,7 @@
 # => To cause console output, simply use DEBUG.cout(args)
 # => There are 4 total arguments that can be passed to this.
 # => Console output -> Arguments are message to be displayed, Message Severity(integer 0-1), and whether or not that particular message should be verbose-only.
+# => Default argumets for severity and verbose? are set to 0, false, you do not need to pass those arguments for simple outputs.
 
 class DEBUG
     def initialize(verbose)
@@ -26,7 +27,7 @@ class DEBUG
     end
 
     #Console output -> Arguments are message, Message Severity(integer), and whether or not that particular message should be verbose-only
-    def self.cout(msg, msgType = "Message", isVerbose = false)
+    def self.cout(msg, msgType = 0, isVerbose = false)
         msgType = msgType.to_i
         case msgType
         when 0

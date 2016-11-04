@@ -9,9 +9,12 @@ require 'gosu'
 #require 'texplay'
 #require 'ashton'
 
-#Begin External File Requires
+#Begin External library file Requires
 require_relative "lib/globalVars.rb"
 require_relative "lib/debugIO.rb"
+
+#Begin External script file Requires
+
 
 def preInit
     # Pre-Startup things go here. THIS RUNS BEFORE ANY SCREEN DRAWING OR ANYTHING!!!
@@ -22,6 +25,7 @@ def preInit
     #Syntax for console out function is <message> <message severity from 0-4> <should it be displayed only in verbose mode?>
     DEBUG.cout("Debugging has been loaded, initial cout here.", 0, false)
 
+
     #Signal end of Preinitialization code
     DEBUG.cout("PreInit Finished!", 0, false)
 end
@@ -30,19 +34,34 @@ end
 class GameWindow < Gosu::Window
   def initialize
     #Window Width, Height
-    @@winWidth = CONST_winWidth
-    @@winHeight = CONST_winHeight
-    super @@winWidth, @@winHeight
-    DEBUG.cout("Window Size set to #{@@winWidth}x#{@@winHeight}px", 0, false)
+    $winWidth = CONST_winWidth
+    $winHeight = CONST_winHeight
+    super $winWidth, $winHeight
+    DEBUG.cout("Window Size set to #{$winWidth}x#{$winHeight}px", 0, false)
 
     #Window Title
     self.caption = "MMOnline 2  v." + CONST_PRODUCTVERSION
     DEBUG.cout("Set window title using version #{CONST_PRODUCTVERSION}", 0, true)
 
-    #TEMPORARY
-    @loading_img = CONST_STARTUP_BG
-    @titleFont = Gosu::Font.new(80)
-    #TEMPORARY
+    #Begin loading images into memory. This is going to be REALLY LONG!
+    # => @loadstatus variable is, as an integer, a descriptor of how many images have been loaded.
+    imgNum = 0
+
+    # Loads image from the constant array using the @imgNum variable as an adress into the array.
+    # => Dynamically creates a new variable for each item in the arrayS
+    # => Does this in a loop, file path is represented by variable \f\
+    # => Will replace '/' and '.' with '_'
+    # => Final Naming should be <assets folder>_<assets subfolder>_<filename>_<extension without the dot>
+    CONST_LOADINGFILES.length.times do |f|
+        # => Next two lines replace bad chars in the string with underscores.
+        assetName = CONST_LOADINGFILES[imgNum].tr('/', '_')
+        assetName = assetName.tr('.', '_')
+        # => Creates a brand new instance variable with naming convention shown above.
+        # => Initializes it in gosu.
+        instance_variable_set("@#{assetName}", Gosu::Image.new(CONST_LOADINGFILES[imgNum], :tileable => true))
+        DEBUG.cout("Initialized image file '#{CONST_LOADINGFILES[imgNum]}' with assetName '@#{assetName}'", 0, false)
+        imgNum += 1
+    end
   end
 
   def update
@@ -52,7 +71,8 @@ class GameWindow < Gosu::Window
 
   def draw
       #Will redraw the entire screen. For menu changes and such
-      @loading_img.draw(0,0,0)
+      @assets_bg_startupBG1_jpg.draw(0,0,0, factor_x=1.2, factor_y=1.2)
+      DEBUG.cout("Drew image #{@assets_bg_startupBG1_jpg} : @assets_bg_startupBG1_jpg.", 0, true)
   end
 end
 

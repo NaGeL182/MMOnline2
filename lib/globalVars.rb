@@ -12,13 +12,15 @@
 CONST_PRODUCTVERSION = '0.0.1'
 
 # Boolean Value, is verbose debugging enabled (true) or disabled (false) ?
-CONST_VERBOSE = true
+CONST_VERBOSE = false
 
 #Default window dimensions in pixels.
 CONST_winWidth = 1191
 CONST_winHeight = 670
 
 
-# ================ Gosu Images ================
+# ================ Gosu Image Array ================
 
-CONST_STARTUP_BG = Gosu::Image.new("assets/bg/miiaBG1.jpg", :tileable => true)
+# => Array containing the path to EACH AND EVERY IMAGE ASSET THAT SHOULD BE REGISTERED INTO MEMORY ON STARTUP/LOAD.
+# => UNLESS YOU WANT PROBLEMS: All paths should be "assets/<categorical subfolder>/filename.extnesion"
+CONST_LOADINGFILES = ["assets/bg/miiaBG1.jpg", "assets/bg/startupBG1.jpg"]
