@@ -1,0 +1,3 @@
+class LoadBar
+
+end

@@ -21,6 +21,6 @@ CONST_winHeight = 670
 
 # ================ Gosu Image Array ================
 
-# => Array containing the path to EACH AND EVERY IMAGE ASSET THAT SHOULD BE REGISTERED INTO MEMORY ON STARTUP/LOAD.
+# => Array containing the path to EACH AND EVERY *STATIC* IMAGE ASSET THAT SHOULD BE REGISTERED INTO MEMORY ON STARTUP/LOAD.
 # => UNLESS YOU WANT PROBLEMS: All paths should be "assets/<categorical subfolder>/filename.extnesion"
-CONST_LOADINGFILES = ["assets/bg/miiaBG1.jpg", "assets/bg/startupBG1.jpg"]
+CONST_LOADINGFILES = ["assets/misc/cursor.png"]
