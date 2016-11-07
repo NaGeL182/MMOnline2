@@ -52,7 +52,9 @@ class GameWindow < Gosu::Window
     #Begin loading images into memory. This is going to be REALLY LONG!
     # => @loadstatus variable is, as an integer, a descriptor of how many assets have been loaded.
     @loadingstatus = 0
+    @totalassets = CONST_LOADINGFILES.length
 
+    DEBUG.cout("Registered #{@totalassets.to_s} additional assets to load.")
     # Loads static images from the constant array using the @imgNum variable as an adress into the array.
     # => Dynamically creates a new variable for each item in the arrayS
     # => Does this in a loop, file path is represented by variable \f\
@@ -70,7 +72,10 @@ class GameWindow < Gosu::Window
         instance_variable_set("@#{assetName}", Gosu::Image.new(CONST_LOADINGFILES[@loadingstatus], :tileable => true))
         DEBUG.cout("Initialized image file '#{CONST_LOADINGFILES[@loadingstatus]}' with assetName '#{assetName}'", 0, false)
         @loadingstatus += 1
+        @processedAssets = (@loadingstatus / @totalassets)*100
+        @processedAssets = @processedAssets.to_i
     end
+    @loadingstatus = "done"
     #End Pre-Init resource loading block.
   end
 
@@ -90,7 +95,11 @@ class GameWindow < Gosu::Window
       @assets_misc_cursor_png.draw self.mouse_x, self.mouse_y, 666
       DEBUG.cout("Drew image #{@assets_misc_cursor_png} : assets_misc_cursor_png.", 0, true)
 
-      @assets_misc_loadingbar_png[@loadingstatus].draw(403, 345, 1, scale_x = 3, scale_y = 3)
+      if @processedAssets == 100
+          @assets_misc_loadingbar_png[@processedAssets].draw(403, 345, 1, scale_x = 3, scale_y = 3)
+      else
+
+      end
   end
 end
 
